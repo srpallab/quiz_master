@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_master/screens%20/result_screen.dart';
+import 'package:quiz_master/screens/result_screen.dart';
 
 import '../models/question.dart';
 import '../models/quiz_result.dart';

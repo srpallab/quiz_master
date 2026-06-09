@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'home_screen.dart';
+import 'package:go_router/go_router.dart';
+import 'package:quiz_master/router/app_router.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -53,13 +53,15 @@ class _SplashScreenState extends State<SplashScreen>
 
     await Future.delayed(const Duration(seconds: 2));
     if (mounted) {
-      Navigator.of(context).pushReplacement(
-        PageRouteBuilder(
-          transitionDuration: Duration(milliseconds: 500),
-          pageBuilder: (context, animation, secondaryAnimation) =>
-              const HomeScreen(),
-        ),
-      );
+      // Navigator.of(context).pushReplacement(
+      //   PageRouteBuilder(
+      //     transitionDuration: Duration(milliseconds: 500),
+      //     pageBuilder: (context, animation, secondaryAnimation) =>
+      //         const HomeScreen(),
+      //   ),
+      // );
+      //
+      context.go(AppRouter.home);
     }
   }
 

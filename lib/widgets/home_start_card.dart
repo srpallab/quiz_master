@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:quiz_master/router/app_router.dart';
 
 import '../data/questions_data.dart';
-import '../screens /quiz_screen.dart';
+import '../screens/quiz_screen.dart';
 import '../theme/app_theme.dart';
 
 class HomeStartCard extends StatelessWidget {
@@ -71,15 +73,16 @@ class HomeStartCard extends StatelessWidget {
                 width: screenWidth * 0.45,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => QuizScreen(
-                          questions: QuestionsData.flutterQuestions,
-                          title: 'Flutter Quiz',
-                        ),
-                      ),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (_) => QuizScreen(
+                    //       questions: QuestionsData.flutterQuestions,
+                    //       title: 'Flutter Quiz',
+                    //     ),
+                    //   ),
+                    // );
+                    context.push(AppRouter.quiz, extra: 'Go Flutter');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
