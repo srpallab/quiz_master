@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import '../models/question.dart';
 
 class QuestionsData {
@@ -163,4 +165,23 @@ class QuestionsData {
 
   static List<Question> getByDifficulty(Difficulty d) =>
       flutterQuestions.where((q) => q.difficulty == d).toList();
+
+  static List<Question> prepareShuffled() {
+    final rng = Random();
+    final shuffled = List<Question>.from(flutterQuestions)..shuffle(rng);
+    return shuffled.map((q) {
+      final opts = List<String>.from(q.options);
+      final correctAnswer = opts[q.correctIndex];
+      opts.shuffle(rng);
+      return Question(
+        id: q.id,
+        text: q.text,
+        options: opts,
+        correctIndex: opts.indexOf(correctAnswer),
+        category: q.category,
+        difficulty: q.difficulty,
+        explanation: q.explanation,
+      );
+    }).toList();
+  }
 }
