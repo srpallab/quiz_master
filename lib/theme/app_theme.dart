@@ -169,4 +169,134 @@ class AppTheme {
       ),
     );
   }
+
+  static ThemeData get darkTheme {
+    const seedColor = Color(0xFF1565C0);
+
+    return ThemeData(
+      useMaterial3: true,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: seedColor,
+        brightness: Brightness.dark,
+        primary: const Color(0xFF64B5F6),
+        secondary: const Color(0xFF4DD0E1),
+      ),
+      fontFamily: 'Nunito',
+
+      scaffoldBackgroundColor: const Color(0xFF0D1B2A),
+
+      cardTheme: CardThemeData(
+        elevation: 0,
+        color: const Color(0xFF1B2838),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+          side: const BorderSide(color: Color(0xFF2C3E50), width: 1),
+        ),
+        margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 6),
+      ),
+
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFF64B5F6),
+          foregroundColor: const Color(0xFF0D1B2A),
+          minimumSize: const Size(double.infinity, 54),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          textStyle: const TextStyle(
+            fontFamily: 'Nunito',
+            fontSize: 16,
+            fontWeight: FontWeight.w700,
+          ),
+          elevation: 0,
+        ),
+      ),
+
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: const Color(0xFF64B5F6),
+          minimumSize: const Size(double.infinity, 54),
+          side: const BorderSide(color: Color(0xFF64B5F6), width: 1.5),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          textStyle: const TextStyle(
+            fontFamily: 'Nunito',
+            fontSize: 16,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+      ),
+
+      chipTheme: ChipThemeData(
+        backgroundColor: const Color(0xFF1B2838),
+        labelStyle: const TextStyle(
+          fontFamily: 'Nunito',
+          fontSize: 12,
+          fontWeight: FontWeight.w600,
+          color: Color(0xFF64B5F6),
+        ),
+        side: const BorderSide(color: Color(0xFF2C3E50)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      ),
+
+      textTheme: const TextTheme(
+        displayLarge: TextStyle(
+          fontSize: 40,
+          fontWeight: FontWeight.w800,
+          color: Color(0xFFE8EDF8),
+          height: 1.1,
+        ),
+        displayMedium: TextStyle(
+          fontSize: 32,
+          fontWeight: FontWeight.w800,
+          color: Color(0xFFE8EDF8),
+        ),
+        headlineLarge: TextStyle(
+          fontSize: 26,
+          fontWeight: FontWeight.w700,
+          color: Color(0xFFE8EDF8),
+        ),
+        headlineMedium: TextStyle(
+          fontSize: 22,
+          fontWeight: FontWeight.w700,
+          color: Color(0xFFE8EDF8),
+        ),
+        titleLarge: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w700,
+          color: Color(0xFFE8EDF8),
+        ),
+        titleMedium: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          color: Color(0xFFE8EDF8),
+        ),
+        bodyLarge: TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.w400,
+          color: Color(0xFFB0BEC5),
+          height: 1.6,
+        ),
+        bodyMedium: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w400,
+          color: Color(0xFF78909C),
+          height: 1.5,
+        ),
+        labelLarge: TextStyle(
+          fontSize: 13,
+          fontWeight: FontWeight.w600,
+          color: Color(0xFF78909C),
+        ),
+      ),
+
+      dividerTheme: const DividerThemeData(
+        color: Color(0xFF2C3E50),
+        thickness: 1,
+        space: 1,
+      ),
+    );
+  }
 }

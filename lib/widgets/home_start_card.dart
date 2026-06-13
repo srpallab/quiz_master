@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:quiz_master/router/app_router.dart';
 
 import '../data/questions_data.dart';
-import '../screens/quiz_screen.dart';
 import '../theme/app_theme.dart';
 
 class HomeStartCard extends StatelessWidget {
@@ -21,7 +20,6 @@ class HomeStartCard extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          // Background decoration circles
           Positioned(
             right: -20,
             top: -20,
@@ -46,7 +44,6 @@ class HomeStartCard extends StatelessWidget {
               ),
             ),
           ),
-
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -73,16 +70,11 @@ class HomeStartCard extends StatelessWidget {
                 width: screenWidth * 0.45,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (_) => QuizScreen(
-                    //       questions: QuestionsData.flutterQuestions,
-                    //       title: 'Flutter Quiz',
-                    //     ),
-                    //   ),
-                    // );
-                    context.push(AppRouter.quiz, extra: 'Go Flutter');
+                    final questions = QuestionsData.prepareShuffled();
+                    context.push(
+                      AppRouter.quiz,
+                      extra: {'questions': questions, 'title': 'Flutter Quiz'},
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,

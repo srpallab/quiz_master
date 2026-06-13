@@ -1,18 +1,19 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:quiz_master/models/quiz_result.dart';
 import 'package:quiz_master/screens/home_screen.dart';
 import 'package:quiz_master/screens/quiz_screen.dart';
 import 'package:quiz_master/screens/result_screen.dart';
 import 'package:quiz_master/screens/splash_screen.dart';
 
 import '../data/questions_data.dart';
+import '../models/question.dart';
+import '../models/quiz_result.dart';
 
 class AppRouter {
   static const splash = '/';
   static const home = '/home';
   static const quiz = '/quiz/:title';
   static const result = '/result';
-  // static const profile = '/profile'
 }
 
 final appRouter = GoRouter(
@@ -28,7 +29,13 @@ final appRouter = GoRouter(
     GoRoute(
       path: AppRouter.quiz,
       builder: (context, state) {
-        final String title = state.extra as String;
+        final extra = state.extra;
+        if (extra is Map) {
+          final questions = extra['questions'] as List<Question>;
+          final title = extra['title'] as String;
+          return QuizScreen(questions: questions, title: title);
+        }
+        final String title = extra as String;
         return QuizScreen(
           questions: QuestionsData.flutterQuestions,
           title: title,
@@ -37,18 +44,17 @@ final appRouter = GoRouter(
     ),
     GoRoute(
       path: AppRouter.result,
-      builder: (context, state) {
-        final stateTotalScore = state.pathParameters['totalScore']!;
-
-        return ResultScreen(
-          questions: [],
-          result: QuizResult(
-            totalQuestions: 0,
-            totalScore: int.parse(stateTotalScore),
-            correctAnswers: 0,
-            maxScore: 0,
-            answers: [],
-          ),
+      pageBuilder: (context, state) {
+        final extra = state.extra as Map;
+        final result = extra['result'] as QuizResult;
+        final questions = extra['questions'] as List<Question>;
+        return CustomTransitionPage(
+          key: state.pageKey,
+          child: ResultScreen(result: result, questions: questions),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+          transitionDuration: const Duration(milliseconds: 400),
         );
       },
     ),

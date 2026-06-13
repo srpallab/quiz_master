@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../data/questions_data.dart';
+import '../providers/theme_provider.dart';
 import '../theme/app_theme.dart';
 import 'home_header_stat.dart';
 
@@ -47,22 +48,54 @@ class HomeHeader extends StatelessWidget {
                   ),
                 ],
               ),
-              GestureDetector(
-                onTap: onProfileTap,
-                child: Container(
-                  width: 44,
-                  height: 44,
-                  decoration: BoxDecoration(
-                    color: Colors.white.withAlpha(40),
-                    borderRadius: BorderRadius.circular(14),
-                    border: Border.all(color: Colors.white.withAlpha(77)),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  GestureDetector(
+                    onTap: ThemeProvider.toggle,
+                    child: Container(
+                      width: 44,
+                      height: 44,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withAlpha(40),
+                        borderRadius: BorderRadius.circular(14),
+                        border: Border.all(color: Colors.white.withAlpha(77)),
+                      ),
+                      child: ListenableBuilder(
+                        listenable: ThemeProvider.themeMode,
+                        builder: (context, _) {
+                          final isDark = ThemeProvider.themeMode.value ==
+                              ThemeMode.dark;
+                          return Icon(
+                            isDark
+                                ? Icons.light_mode_rounded
+                                : Icons.dark_mode_rounded,
+                            color: Colors.white,
+                            size: 24,
+                          );
+                        },
+                      ),
+                    ),
                   ),
-                  child: const Icon(
-                    Icons.person_rounded,
-                    color: Colors.white,
-                    size: 24,
+                  const SizedBox(width: 8),
+                  GestureDetector(
+                    onTap: onProfileTap,
+                    child: Container(
+                      width: 44,
+                      height: 44,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withAlpha(40),
+                        borderRadius: BorderRadius.circular(14),
+                        border: Border.all(color: Colors.white.withAlpha(77)),
+                      ),
+                      child: const Icon(
+                        Icons.person_rounded,
+                        color: Colors.white,
+                        size: 24,
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
             ],
           ),

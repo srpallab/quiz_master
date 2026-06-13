@@ -9,15 +9,15 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F7FF),
-      //appBar: AppBar(centerTitle: true, title: const Text('Quiz Master')),
+      backgroundColor:
+          isDark ? const Color(0xFF0D1B2A) : const Color(0xFFF5F7FF),
       body: SafeArea(
         child: Column(
           children: [
             HomeHeader(onProfileTap: () {}),
             const SizedBox(height: 24),
-            // ── Start Quiz CTA ──
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: HomeStartCard(screenWidth: screenWidth),
