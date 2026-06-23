@@ -1,7 +1,5 @@
 name: quiz_master
 description: "A Flutter Quiz project."
-# The following line prevents the package from being accidentally published to
-# pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
@@ -13,18 +11,20 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.8
+  cupertino_icons: ^1.0.9
   go_router: ^17.3.0
+  provider: ^6.1.5+1
+  dio: ^5.9.2
+  firebase_core: ^4.11.0
+  firebase_auth: ^6.5.3
+  share_plus: ^13.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
+
 
 # The following section is specific to Flutter packages.
 flutter:

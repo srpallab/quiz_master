@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_master/screens/result_screen.dart';
+import 'package:go_router/go_router.dart';
+import 'package:quiz_master/router/app_router.dart';
 
 import '../models/question.dart';
 import '../models/quiz_result.dart';
@@ -74,17 +75,22 @@ class _QuizScreenState extends State<QuizScreen> {
       answers: _records,
     );
 
-    Navigator.pushReplacement(
-      context,
-      PageRouteBuilder(
-        transitionDuration: const Duration(milliseconds: 400),
-        pageBuilder: (_, _, _) =>
-            ResultScreen(result: result, questions: widget.questions),
-        transitionsBuilder: (_, animation, __, child) {
-          return FadeTransition(opacity: animation, child: child);
-        },
-      ),
+    context.go(
+      AppRouter.result,
+      extra: {'result': result, 'questions': widget.questions},
     );
+
+    // Navigator.pushReplacement(
+    //   context,
+    //   PageRouteBuilder(
+    //     transitionDuration: const Duration(milliseconds: 400),
+    //     pageBuilder: (_, _, _) =>
+    //         ResultScreen(result: result, questions: widget.questions),
+    //     transitionsBuilder: (_, animation, _, child) {
+    //       return FadeTransition(opacity: animation, child: child);
+    //     },
+    //   ),
+    // );
   }
 
   AnswerState _stateForOption(int index) {
